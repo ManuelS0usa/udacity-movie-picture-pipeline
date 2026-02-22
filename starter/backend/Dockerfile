@@ -16,9 +16,9 @@ RUN apk update && \
 
 RUN mkdir -p /var/www/app && mkdir /app
 
-COPY Pipfile* /app
 WORKDIR /app
-RUN pipenv requirements > requirements.txt && \
+COPY Pipfile* /app/
+RUN pipenv lock -r > requirements.txt && \
     pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
